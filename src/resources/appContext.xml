@@ -1,0 +1,23 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+			"https://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="bds" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/college" />
+		<property name="username" value="root" />
+		<property name="password" value="admin" />
+		<property name="maxTotal" value="15" />
+		<property name="maxIdle" value="5" />
+		<property name="maxWaitMillis" value="5000" />
+
+	</bean>
+	<bean id ="dao" class ="dao.StudentDaoImplJDBC">
+		<property name ="ds" ref ="bds"/>
+	</bean>
+	<bean id ="bo" class ="business.StudentBoImpl">
+		<property name ="dao" ref ="dao"/>
+	</bean>
+</beans>
